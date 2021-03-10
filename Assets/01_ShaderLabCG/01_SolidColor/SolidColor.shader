@@ -43,7 +43,7 @@ Shader "Custom/SolidColor"
 				float x = i.vertex.x;
 				float y = i.vertex.y;
 				float z = i.vertex.z;
-				float w = 1;
+				float w = 1;			//homogeneous coordinate
 				
 				i.vertex = float4(x,y,z,w);
 
