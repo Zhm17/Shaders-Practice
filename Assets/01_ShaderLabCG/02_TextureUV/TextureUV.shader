@@ -6,8 +6,16 @@
         _Color("Tint", Color) = (1,1,1,1)
     }
 
-        SubShader
+    SubShader
     {
+        Tags 
+        {
+            "RenderType"="Opaque"
+            "Queue" = "Geometry" 
+        }
+
+        Zwrite Off
+
         Pass
         {
             CGPROGRAM
