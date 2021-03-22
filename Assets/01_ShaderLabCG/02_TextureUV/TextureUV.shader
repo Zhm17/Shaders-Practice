@@ -14,7 +14,7 @@
             "Queue" = "Geometry" 
         }
 
-        Zwrite Off
+        //Zwrite Off
 
         Pass
         {
