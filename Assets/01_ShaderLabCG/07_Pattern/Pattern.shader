@@ -6,6 +6,7 @@
         _Value1 ("Value 1", Range(1,10)) = 1
         _Value2 ("Value 2", Range(0,1)) = 0
         _Value3 ("Value 3", Range (1,5)) = 2
+        _Value4 ("Value 4", Range (0,1)) = 0.5
     }
     SubShader
     {
@@ -37,12 +38,32 @@
             float _Value1;
             float _Value2;
             float _Value3;
+            float _Value4;
+
+            float2 rotate(float2 uv)
+            {
+                float pivot = (_Value4);
+
+                float cosAngle = _CosTime.w; //cos(_Time.y);
+                float sinAngle = _SinTime.w; //sin(_Time.y);
+                float2x2 rot = float2x2
+                (
+                    cosAngle, -sinAngle,
+                    sinAngle, cosAngle
+                );
+
+                float2 uvPiv =  uv - pivot;
+
+                float2 uvRot = mul(rot, uvPiv);
+
+                return uvRot;
+            }
 
             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = v.uv;
+                o.uv = rotate( v.uv );
                 return o;
             }
 
@@ -58,9 +79,12 @@
 
             fixed4 frag (v2f i) : SV_Target
             {
+                //float2 translation = float2(cos(_Time.y), sin(_Time.y));
+                //i.uv += translation;
+
                 i.uv = i.uv * _Value3 - _Value2;
                 float cube = shape(frac(i.uv.x), frac(i.uv.y));
-                cube = abs(1-cube);
+                //cube = abs(1-cube);
                 return cube * _Color;
             }
             ENDCG
