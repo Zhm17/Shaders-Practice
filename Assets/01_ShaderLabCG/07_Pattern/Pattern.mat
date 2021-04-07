@@ -74,7 +74,7 @@ Material:
     - _Value1: 2.43
     - _Value2: 0
     - _Value3: 4.61
-    - _Value4: 0.561
+    - _Value4: 0.5
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 0.1656568, g: 1, b: 0, a: 1}

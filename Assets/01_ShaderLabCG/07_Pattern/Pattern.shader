@@ -20,6 +20,7 @@
             #pragma fragment frag
 
             #include "UnityCG.cginc"
+            #include "Assets/01_ShaderLabCG/CGFiles/RotateCG.cginc"
 
             struct appdata
             {
@@ -40,7 +41,7 @@
             float _Value3;
             float _Value4;
 
-            float2 rotate(float2 uv)
+            /*float2 rotate(float2 uv)
             {
                 float pivot = (_Value4);
 
@@ -57,13 +58,13 @@
                 float2 uvRot = mul(rot, uvPiv);
 
                 return uvRot;
-            }
+            }*/
 
             v2f vert (appdata v)
             {
                 v2f o;
                 o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = rotate( v.uv );
+                o.uv = rotate( v.uv , _Value4); // FROM ROTATECG
                 return o;
             }
 
